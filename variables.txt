@@ -1,0 +1,9 @@
+temperatura 0 100
+bajo trapezoidal 0 0 20 40
+medio triangular 30 50 70
+alto trapezoidal 60 80 100 100
+
+humedad 0 100
+seca trapezoidal 0 0 30 50
+normal triangular 40 60 80
+humeda trapezoidal 70 90 100 100
