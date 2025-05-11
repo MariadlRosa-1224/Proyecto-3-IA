@@ -15,7 +15,7 @@ public class BaseConocimiento {
         File file = new File(archivo);
     
         if (!file.exists()) {
-            System.out.println("⚠️ Archivo no encontrado.");
+            System.out.println("Archivo no encontrado.");
             return;
         }
     
@@ -49,7 +49,7 @@ public class BaseConocimiento {
                 );
                 reglas.add(regla);
             } else {
-                System.out.println("❌ La línea no tiene suficientes elementos, se ignorará.");
+                System.out.println("La línea no tiene suficientes elementos, se ignorará.");
             }
         }
         scanner.close();
