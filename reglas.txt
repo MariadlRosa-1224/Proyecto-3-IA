@@ -1,3 +1,3 @@
-temperatura alta Y humedad baja ENTONCES ventilacion alta
-temperatura baja Y humedad alta ENTONCES ventilacion baja
-temperatura media Y humedad media ENTONCES ventilacion media
+temperatura alta Y humedad seca ENTONCES ventilacion alta
+temperatura baja Y humedad normal ENTONCES ventilacion baja
+temperatura media Y humedad humeda ENTONCES ventilacion media

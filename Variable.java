@@ -1,31 +1,56 @@
-// Una variable se representa de varios conjuntos difusos
+import java.util.ArrayList;
+import java.util.List;
 
 public class Variable {
     public String nombre;
-    public float universoMinimo;
-    public float universoMaximo;
-    public ConjuntoDifuso[] conjuntosDifusos;
+    public double universoMinimo;
+    public double universoMaximo;
+    private List<ConjuntoDifuso> conjuntosDifusos;
 
-    public Variable(String nombre, float universoMinimo, float universoMaximo, ConjuntoDifuso[] conjuntosDifusos) {
+    public Variable(String nombre, double universoMinimo, double universoMaximo, ConjuntoDifuso[] conjuntosDifusos) {
         this.nombre = nombre;
         this.universoMinimo = universoMinimo;
         this.universoMaximo = universoMaximo;
-        this.conjuntosDifusos = conjuntosDifusos;
-    }
+        this.conjuntosDifusos = new ArrayList<>();
 
-    public void fuzzificar(float x) {
+        // Agregamos los conjuntos difusos recibidos
         for (ConjuntoDifuso conjunto : conjuntosDifusos) {
-            conjunto.fuzzificar(x);
+            this.conjuntosDifusos.add(conjunto);
         }
     }
 
-    public float getGradoPertenencia(String nombreConjunto) {
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getRangoMin() {
+        return universoMinimo;
+    }
+
+    public double getRangoMax() {
+        return universoMaximo;
+    }
+
+    public List<ConjuntoDifuso> getConjuntosDifusos() {
+        return conjuntosDifusos;
+    }
+
+    public void agregarConjuntoDifuso(ConjuntoDifuso conjunto) {
+        conjuntosDifusos.add(conjunto);
+    }
+
+    public void fuzificar(double valor) {
         for (ConjuntoDifuso conjunto : conjuntosDifusos) {
-            if (conjunto.nombre.equals(nombreConjunto)) {
-                return conjunto.gradoPertenencia;
-            }
+            double pertenencia = conjunto.calcularGradoPertenencia(valor);
+            conjunto.setGradoPertenencia(pertenencia);
         }
-        return -1; // Si no se encuentra el conjunto
+    }
+
+    public ConjuntoDifuso getConjuntoPorNombre(String nombre) {
+        return conjuntosDifusos.stream()
+                .filter(conjunto -> conjunto.getNombre().equals(nombre))
+                .findFirst()
+                .orElse(null);
     }
 
     public String toString() {

@@ -38,65 +38,48 @@ public class SistemaVariables {
 
 
     public void leerArchivo(String nombreArchivo) throws FileNotFoundException {
-
         String linea;
-
-        // lectura de archivo
-
-        /* formato de archivo
-            variable1 0 100
-            clasificacion1 tipo 0 0 20 40
-            clasificacion2 tipo 30 50 70
-            clasificacion3 tipo 60 80 100 100
-
-            variable2 0 100
-            clasificacion1 tipo 0 0 20 40
-            clasificacion2 tipo 30 50 70
-            clasificacion3 tipo 60 80 100 100
-         */ // Pueden haber mas clasificaciones rn cada variable y variar los puntoos
-
-
-
         BufferedReader br = new BufferedReader(new FileReader(nombreArchivo));
-
-
+    
         try {
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(" ");
-                if (partes.length == 3) { // variable
+                if (partes.length == 3) { // Es una variable
                     String nombreVariable = partes[0];
-                    float universoMinimo = Float.parseFloat(partes[1]);
-                    float universoMaximo = Float.parseFloat(partes[2]);
-
+                    double universoMinimo = Double.parseDouble(partes[1]);
+                    double universoMaximo = Double.parseDouble(partes[2]);
+    
                     List<ConjuntoDifuso> conjuntosDifusos = new ArrayList<>();
-
-                    // Leer conjuntos difusos de la variable
-                    while ((linea = br.readLine()) != null && !linea.isEmpty()) {
-                        String[] partesConjunto = linea.split(" ");
-
+    
+                    // Leer conjuntos difusos para esta variable
+                    while ((linea = br.readLine()) != null && !linea.trim().isEmpty()) {
+                        String[] partesConjunto = linea.trim().split(" ");
+    
                         String nombreConjunto = partesConjunto[0];
-
                         String tipoFuncion = partesConjunto[1];
-                        
-                        float[] puntos = new float[partesConjunto.length - 2];
+    
+                        double[] puntos = new double[partesConjunto.length - 2];
                         for (int i = 2; i < partesConjunto.length; i++) {
-                            puntos[i - 2] = Float.parseFloat(partesConjunto[i]);
+                            puntos[i - 2] = Double.parseDouble(partesConjunto[i]);
                         }
-                        FuncionPertenencia funcionPertenencia = new FuncionPertenencia(tipoFuncion, puntos);
-                        ConjuntoDifuso conjuntoDifuso = new ConjuntoDifuso(nombreConjunto, funcionPertenencia);
+    
+                        ConjuntoDifuso conjuntoDifuso = new ConjuntoDifuso(nombreConjunto, tipoFuncion, puntos);
                         conjuntosDifusos.add(conjuntoDifuso);
                     }
-                    Variable variable = new Variable(nombreVariable, universoMinimo, universoMaximo, conjuntosDifusos.toArray(new ConjuntoDifuso[0]));
+    
+                    Variable variable = new Variable(
+                        nombreVariable,
+                        universoMinimo,
+                        universoMaximo,
+                        conjuntosDifusos.toArray(new ConjuntoDifuso[0])
+                    );
                     agregarVariable(variable);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-
         }
-
-        
-    }
+    }    
 
 
     public String toString() {

@@ -23,7 +23,7 @@ public class BaseConocimiento {
     
         while (scanner.hasNextLine()) {
             String linea = scanner.nextLine();
-            System.out.println("Línea leída: " + linea);
+            System.out.println("\nLínea leída: " + linea);
     
             // Eliminar espacios adicionales y dividir por espacios
             String[] partes = linea.trim().split("\\s+");
@@ -64,5 +64,10 @@ public class BaseConocimiento {
                 System.out.println(regla.toString());
             }
         }
+    }
+
+    // Nuevo método para acceder a las reglas
+    public List<ReglaDifusa> getReglas() {
+        return reglas;
     }
 }

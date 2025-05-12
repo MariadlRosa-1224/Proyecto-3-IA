@@ -23,7 +23,35 @@ public class Main {
             System.out.println("No se encontró el archivo de reglas: " + e.getMessage());
         }
 
-        // Aquí puedes agregar más lógica para probar la inferencia difusa si tienes datos de entrada específicos.
-        // Puedes crear instancias de las variables y simular la aplicación de reglas con entradas difusas.
+        try {
+            Variable temperatura = sistemaVariables.getVariable("temperatura");
+            Variable humedad = sistemaVariables.getVariable("humedad");
+            Variable ventilacion = sistemaVariables.getVariable("ventilacion");
+            
+            if (temperatura == null || humedad == null || ventilacion == null) {
+                System.out.println("Error: Una o más variables no fueron encontradas en el archivo.");
+                return;
+            }
+            
+            MotorInferencia inferencia = new MotorInferencia(
+                    baseConocimiento, temperatura, humedad, ventilacion);
+        
+            System.out.println("\n--- PRUEBA DEL SISTEMA ---");
+        
+            double valorTemperatura = 85;
+            double valorHumedad = 20;
+        
+            System.out.printf("Entrada: temperatura = %.2f, humedad = %.2f%n", 
+                valorTemperatura, valorHumedad);
+        
+            double resultadoVentilacion = inferencia.inferir(valorTemperatura, valorHumedad);
+        
+            System.out.printf("Resultado (ventilación): %.2f%n", resultadoVentilacion);
+        
+        } catch (Exception e) {
+            System.out.println("Error durante la ejecución: " + e.getMessage());
+            e.printStackTrace();
+        }        
+        
     }
 }
