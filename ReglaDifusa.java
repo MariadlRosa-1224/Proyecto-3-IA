@@ -1,7 +1,8 @@
 // Clase que representa una regla difusa en el sistema de inferencia
 public class ReglaDifusa {
     
-    // Atributos de la regla
+    // Atributos de la regla: dos variables de entrada con sus conjuntos difusos, un operador lógico,
+    // y una variable de salida con su conjunto difuso correspondiente
     private String variableEntrada1;
     private String conjuntoDifuso1;
     private String variableEntrada2;
@@ -10,7 +11,7 @@ public class ReglaDifusa {
     private String variableSalida;
     private String conjuntoSalida;
 
-    // Constructor
+    // Constructor que inicializa todos los atributos de la regla
     public ReglaDifusa(String variableEntrada1, String conjuntoDifuso1,
                        String variableEntrada2, String conjuntoDifuso2,
                        String operador, String variableSalida, String conjuntoSalida) {
@@ -23,7 +24,7 @@ public class ReglaDifusa {
         this.conjuntoSalida = conjuntoSalida;
     }
 
-    // Método para visualizar la regla en formato legible
+    // Método que retorna una representación legible de la regla en formato tipo "SI ... ENTONCES ..."
     @Override
     public String toString() {
         return "\nSI " + variableEntrada1 + " ES " + conjuntoDifuso1 + " " +
@@ -31,19 +32,22 @@ public class ReglaDifusa {
                " ENTONCES " + variableSalida + " ES " + conjuntoSalida;
     }
 
-    // Métodos getters necesarios
+    // Getter que retorna el operador lógico de la regla (por ejemplo: AND, OR)
     public String getOperador() {
         return operador;
     }
 
+    // Getter que retorna el conjunto difuso asociado a la variable de salida
     public String getValorSalida() {
         return conjuntoSalida;
     }
 
+    // Getter que retorna el conjunto difuso asociado a la primera variable de entrada
     public String getValorEntrada1() {
         return conjuntoDifuso1;
     }
 
+    // Getter que retorna el conjunto difuso asociado a la segunda variable de entrada
     public String getValorEntrada2() {
         return conjuntoDifuso2;
     }

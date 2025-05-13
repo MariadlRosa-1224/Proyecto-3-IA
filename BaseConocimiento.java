@@ -1,72 +1,86 @@
-import java.io.*;
-import java.util.*;
+import java.io.*;         
+import java.util.*;       
 
 public class BaseConocimiento {
 
-    private List<ReglaDifusa> reglas; // Lista de reglas
+    // Lista que almacenará todas las reglas difusas leídas del archivo
+    private List<ReglaDifusa> reglas;
 
+    // Constructor: Inicializa la lista de reglas como una ArrayList vacía
     public BaseConocimiento() {
         this.reglas = new ArrayList<>();
     }
 
-    // Método para cargar reglas desde un archivo
+    /**
+     * Carga reglas desde un archivo de texto.
+     * El formato esperado por línea es:
+     * IF <var1> <valor1> AND <var2> <valor2> THEN <varSalida> <valorSalida>
+     */
     public void cargarReglasDesdeArchivo(String archivo) throws FileNotFoundException {
         System.out.println("Intentando cargar el archivo: " + archivo);
+
         File file = new File(archivo);
-    
+
+        // Verifica si el archivo existe
         if (!file.exists()) {
             System.out.println("Archivo no encontrado.");
-            return;
+            return; // Sale del método si no encuentra el archivo
         }
-    
-        Scanner scanner = new Scanner(file);
-    
+
+        Scanner scanner = new Scanner(file); // Abre el archivo para lectura
+
+        // Lee línea por línea el archivo
         while (scanner.hasNextLine()) {
             String linea = scanner.nextLine();
             System.out.println("\nLínea leída: " + linea);
-    
-            // Eliminar espacios adicionales y dividir por espacios
+
+            // Elimina espacios extra y divide la línea por espacios
             String[] partes = linea.trim().split("\\s+");
             System.out.println("Elementos encontrados (" + partes.length + "): " + Arrays.toString(partes));
-    
+
+            // Verifica que haya al menos 8 elementos para formar una regla válida
             if (partes.length >= 8) {
-                // Concatenar los elementos extra para formar el valor de salida
+                // Reconstruye el valor de salida en caso de que esté formado por varias palabras
                 StringBuilder valorSalida = new StringBuilder();
                 for (int i = 7; i < partes.length; i++) {
                     valorSalida.append(partes[i]).append(" ");
                 }
-    
-                // Eliminar el último espacio en blanco
+
+                // Elimina espacio final sobrante
                 String valorFinal = valorSalida.toString().trim();
-    
-                // Corregimos aquí: pasamos el nombre de la variable de salida correctamente
+
+                /**
+                 * Crea una nueva regla con los componentes:
+                 */
                 ReglaDifusa regla = new ReglaDifusa(
-                    partes[0], partes[1],
-                    partes[3], partes[4],
-                    partes[2],
-                    partes[6], // Aquí está el nombre correcto
-                    valorFinal
+                    partes[0], partes[1],  // "IF" y variable 1
+                    partes[3], partes[4],  // "AND" y variable 2
+                    partes[2],             // valor lingüístico 1
+                    partes[6],             // "THEN"
+                    valorFinal             // valor lingüístico de salida
                 );
-                reglas.add(regla);
+
+                reglas.add(regla); // Agrega la regla a la lista
             } else {
                 System.out.println("La línea no tiene suficientes elementos, se ignorará.");
             }
         }
-        scanner.close();
+
+        scanner.close(); // Cierra el archivo al terminar
     }
 
-    // Método para imprimir las reglas cargadas
+    // Muestra por consola todas las reglas cargadas
     public void imprimirReglas() {
         if (reglas.isEmpty()) {
             System.out.println("No se han cargado reglas.");
         } else {
             for (ReglaDifusa regla : reglas) {
-                System.out.println(regla.toString());
+                System.out.println(regla.toString()); // Usa el método toString de ReglaDifusa
             }
         }
     }
 
-    // Nuevo método para acceder a las reglas
+    // Devuelve la lista de reglas para que puedan ser usadas por otras clases (por ejemplo, el motor de inferencia)
     public List<ReglaDifusa> getReglas() {
         return reglas;
     }
