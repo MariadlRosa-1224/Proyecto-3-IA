@@ -3,18 +3,22 @@
 # Conjuntos difusos: nombre_conjunto tipo limite1 [limite2] limite3 [limite4]
 
 temperatura 0 100
-baja trapezoidal 0 0 20 40
+muy_baja trapezoidal 0 0 10 30
+baja triangular 10 30 30
 media triangular 30 50 70
-alta trapezoidal 60 80 100 100
+alta triangular 50 70 90
+muy_alta trapezoidal 70 90 100 100
 
 humedad 0 100
-seca trapezoidal 0 0 30 50
-normal triangular 40 60 80
-humeda trapezoidal 70 90 100 100
+muy_seca trapezoidal 0 0 10 30
+seca triangular 10 30 50
+normal triangular 30 50 70
+humeda triangular 50 70 90
+muy_humeda trapezoidal 70 90 100 100
 
 ventilacion 0 100
 muy_baja trapezoidal 0 0 10 30
-baja trapezoidal 0 0 30 50
+baja triangular 10 30 50
 media triangular 30 50 70
-alta trapezoidal 60 80 100 100
-muy_alta trapezoidal 80 90 100 100
+alta triangular 50 70 90
+muy_alta trapezoidal 70 90 100 100
