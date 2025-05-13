@@ -38,8 +38,10 @@ public class Main {
         
             System.out.println("\n--- PRUEBA DEL SISTEMA ---");
         
-            double valorTemperatura = 85;
-            double valorHumedad = 20;
+            double valorTemperatura = 45;
+            double valorHumedad = 50;
+
+            // Resultado Temperatura (85) y Humedad (20)
         
             System.out.printf("Entrada: temperatura = %.2f, humedad = %.2f%n", 
                 valorTemperatura, valorHumedad);
