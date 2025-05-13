@@ -4,7 +4,7 @@
 
 temperatura 0 100
 muy_baja trapezoidal 0 0 10 30
-baja triangular 10 30 30
+baja triangular 10 30 50
 media triangular 30 50 70
 alta triangular 50 70 90
 muy_alta trapezoidal 70 90 100 100

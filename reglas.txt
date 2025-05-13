@@ -1,9 +1,29 @@
-temperatura baja Y humedad seca ENTONCES ventilacion media
+temperatura muy_baja Y humedad muy_humeda ENTONCES ventilacion muy_baja
+temperatura muy_baja Y humedad humeda ENTONCES ventilacion muy_baja
+temperatura muy_baja Y humedad normal ENTONCES ventilacion baja
+temperatura muy_baja Y humedad seca ENTONCES ventilacion media
+temperatura muy_baja Y humedad muy_seca ENTONCES ventilacion media
+
+temperatura baja Y humedad muy_humeda ENTONCES ventilacion muy_baja
+temperatura baja Y humedad humeda ENTONCES ventilacion baja
 temperatura baja Y humedad normal ENTONCES ventilacion baja
-temperatura baja Y humedad humeda ENTONCES ventilacion muy_baja
-temperatura media Y humedad seca ENTONCES ventilacion alta
-temperatura media Y humedad normal ENTONCES ventilacion media
-temperatura media Y humedad humeda ENTONCES ventilacion baja
-temperatura alta Y humedad seca ENTONCES ventilacion muy_alta
-temperatura alta Y humedad normal ENTONCES ventilacion alta
-temperatura alta Y humedad humeda ENTONCES ventilacion media
+temperatura baja Y humedad seca ENTONCES ventilacion media
+temperatura baja Y humedad muy_seca ENTONCES ventilacion media
+
+temperatura  media Y humedad  muy_humeda ENTONCES ventilacion baja
+temperatura  media Y humedad  humeda ENTONCES ventilacion baja
+temperatura  media Y humedad  normal ENTONCES ventilacion media
+temperatura  media Y humedad  seca ENTONCES ventilacion alta
+temperatura  media Y humedad  muy_seca ENTONCES ventilacion alta
+
+temperatura  alta Y humedad muy_humeda ENTONCES ventilacion media
+temperatura  alta Y humedad humeda ENTONCES ventilacion media
+temperatura  alta Y humedad normal ENTONCES ventilacion alta
+temperatura  alta Y humedad seca ENTONCES ventilacion muy_alta
+temperatura  alta Y humedad muy_seca ENTONCES ventilacion muy_alta
+
+temperatura muy_alta Y humedad muy_humeda ENTONCES ventilacion media
+temperatura muy_alta Y humedad humeda ENTONCES ventilacion alta
+temperatura muy_alta Y humedad normal ENTONCES ventilacion alta
+temperatura muy_alta Y humedad seca ENTONCES ventilacion muy_alta
+temperatura muy_alta Y humedad muy_seca ENTONCES ventilacion muy_alta

@@ -49,7 +49,7 @@ public class Main {
 
             // Definir valores de entrada (crisp) para las variables de entrada
             double valorTemperatura = 45;
-            double valorHumedad = 50;
+            double valorHumedad = 80;
 
             // Mostrar los valores de entrada
             System.out.printf("Entrada: temperatura = %.2f, humedad = %.2f%n", 
